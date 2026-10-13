@@ -47,11 +47,8 @@ PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Bootctrl
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-mtkimpl.recovery
+     android.hardware.boot-service.default
 
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
 
 # Fastbootd (AIDL)
 TW_INCLUDE_FASTBOOTD := true
