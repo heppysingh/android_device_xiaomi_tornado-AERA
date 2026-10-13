@@ -47,7 +47,7 @@ PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Bootctrl
 PRODUCT_PACKAGES += \
-     android.hardware.boot-service.default
+    android.hardware.boot-service.default
 
 
 # Fastbootd (AIDL)
