@@ -8,4 +8,7 @@
 
 PRODUCT_MAKEFILES := $(LOCAL_DIR)/fox_tornado.mk
 
-COMMON_LUNCH_CHOICES := fox_tornado-eng 
+COMMON_LUNCH_CHOICES := \
+    fox_tornado-eng \
+    fox_tornado-bp2a-eng \
+    fox_tornado-bp2a-userdebug

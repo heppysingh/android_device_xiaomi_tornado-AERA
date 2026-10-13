@@ -45,9 +45,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # API
 PRODUCT_SHIPPING_API_LEVEL := 34
 
-# Bootctrl (AIDL)
+# Bootctrl
 PRODUCT_PACKAGES += \
-    android.hardware.boot-service.default
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
 
 # Fastbootd (AIDL)
 TW_INCLUDE_FASTBOOTD := true
@@ -87,9 +91,10 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# Wi-Fi configuration
+# Wi-Fi configuration & Safe module loader
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/recovery/root/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/wifi/wpa_supplicant.conf
+    $(DEVICE_PATH)/recovery/root/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/wifi/wpa_supplicant.conf \
+    $(DEVICE_PATH)/recovery/root/system/bin/load_wifi.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/load_wifi.sh
 
 # Keymint / Gatekeeper / TEE blobs - pulled from stock tornado device
 PRODUCT_COPY_FILES += \
