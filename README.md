@@ -1,14 +1,7 @@
-# OrangeFox Recovery Project for Redmi 15C 5G (tornado)
+# AERA Recovery Project for Redmi 15C 5G (tornado)
 
-Device tree for building OrangeFox Recovery for **Redmi 15C 5G** (and variants).
+Device tree for AERA OrangeFox Recovery for **Redmi 15C 5G** (and variants).
 
-```
-#
-# Copyright (C) 2024-2026 The OrangeFox Recovery Project
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-```
 
 ## Device Specifications
 
