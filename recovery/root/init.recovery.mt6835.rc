@@ -84,7 +84,7 @@ on boot
     chown system system /dev/xiaomi-touch
     chmod 0664 /dev/xiaomi-touch
     chown system system /sys/class/touch/tp_dev/fod_status
-    chmod 0664 /sys/class/touch/tp_dev/fod_status
+   chmod 0664 /sys/class/touch/tp_dev/fod_status
 
     # Load Touch modules via isolated service after core modules are stable
     start load-touch-modules
@@ -116,8 +116,6 @@ service load-wifi-modules /system/bin/sh /system/bin/load_wifi.sh
     oneshot
     seclabel u:r:recovery:s0
 
-on property:twrp.wifi.load=1
-    start load-wifi-modules
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -iwlan0 -c/vendor/etc/wifi/wpa_supplicant.conf \

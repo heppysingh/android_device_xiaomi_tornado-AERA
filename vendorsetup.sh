@@ -54,5 +54,4 @@ export AERA_FBE_METADATA_MOUNT_IGNORE=1
 # Partition Tools & Backups
 export AERA_ENABLE_ALL_PARTITION_TOOLS=1
 export AERA_QUICK_BACKUP_LIST="/boot;/data;/super;"
-export AERA_ENABLE_WLAN=1
 
