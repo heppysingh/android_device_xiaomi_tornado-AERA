@@ -153,7 +153,7 @@ PRODUCT_COPY_FILES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    $(DEVICE_PATH)
 
 # Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
