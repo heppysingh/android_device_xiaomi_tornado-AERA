@@ -9,6 +9,7 @@ on init
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
     symlink /mnt/vendor/persist /persist
     mkdir /persist/OFRP
+    mkdir /persist/AERA
     mkdir /tmp/recovery 0770 root root
     mkdir /tmp/recovery/sockets 0770 root root
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw

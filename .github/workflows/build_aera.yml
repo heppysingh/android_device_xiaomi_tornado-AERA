@@ -16,8 +16,10 @@ on:
         default: 'aera_tornado-bp2a-eng'
         type: choice
         options:
-          - 'aera_tornado-eng'
           - 'aera_tornado-bp2a-eng'
+          - 'aera_tornado-eng'
+          - 'twrp_tornado-bp2a-eng'
+          - 'twrp_tornado-eng'
 
 jobs:
   build:
@@ -70,6 +72,8 @@ jobs:
           git config --global user.name "AERA Builder"
           git config --global user.email "builder@aera.recovery"
           git config --global color.ui true
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
           mkdir -p /home/runner/aera
           cd /home/runner/aera

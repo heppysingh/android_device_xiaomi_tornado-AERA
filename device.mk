@@ -51,12 +51,13 @@ PRODUCT_PACKAGES += \
 
 
 # Fastbootd (AIDL)
+AERA_INCLUDE_FASTBOOTD := true
 TW_INCLUDE_FASTBOOTD := true
 
 PRODUCT_PACKAGES += \
     android.hardware.fastboot-service.recovery.default
 
-# Health Hal (Uses TW_USE_LEGACY_BATTERY_SERVICES in BoardConfig)
+# Health Hal (Uses AERA_USE_LEGACY_BATTERY_SERVICES in BoardConfig)
 PRODUCT_PACKAGES += \
     android.hardware.health-service.recovery
 
@@ -77,6 +78,10 @@ PRODUCT_PACKAGES += \
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     libion 
+
+AERA_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-ndk.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-ndk.so \

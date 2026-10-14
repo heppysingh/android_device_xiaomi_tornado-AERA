@@ -138,6 +138,7 @@ BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
 AERA_INCLUDE_CRYPTO := true
 AERA_INCLUDE_CRYPTO_FBE := true
 AERA_INCLUDE_FBE_METADATA_DECRYPT := true
+AERA_USE_FSCRYPT_POLICY := 2
 BOARD_USES_METADATA_PARTITION := true
 
 # Mediatek flags
@@ -161,57 +162,58 @@ AERA_DEFAULT_BRIGHTNESS := 900
 AERA_INPUT_BLACKLIST := "hbtp_vm"
 AERA_DEFAULT_LANGUAGE := en
 AERA_THEME := portrait_hdpi
+AERA_UI_ADAPTIVE_RESOLUTION := true
 AERA_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
 AERA_EXCLUDE_APEX := true
-TW_BACKUP_EXCLUSIONS := /data/fonts/files
+AERA_BACKUP_EXCLUSIONS := /data/fonts/files
 
 # USB OTG
-TW_EXCLUDE_DEFAULT_USB_INIT := true
+AERA_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 
 # Filesystem & Partition tools
-TW_INCLUDE_NTFS_3G := true
+AERA_INCLUDE_NTFS_3G := true
 TARGET_USES_MKE2FS := true
-TW_INCLUDE_LPDUMP := true
-TW_INCLUDE_LPTOOLS := true
-TW_INCLUDE_RESETPROP := true
-TW_EXCLUDE_NANO := true
+AERA_INCLUDE_LPDUMP := true
+AERA_INCLUDE_LPTOOLS := true
+AERA_INCLUDE_RESETPROP := true
+AERA_EXCLUDE_NANO := true
 
 # UI & Framebuffer
-TW_THEME := portrait_hdpi
-TW_FRAMERATE := 60
-TW_STATUS_ICONS_ALIGN := center
-TW_TIME_ZONE_GUIDE := "IST-5:30"
-TW_CUSTOM_CPU_POS := 50
-TW_CUSTOM_CLOCK_POS := 300
-TW_CUSTOM_BATTERY_POS := 800
-TW_NO_SCREEN_BLANK := true
-TW_INCLUDE_SCREENSHOT := true
-TW_SCREENSHOT_PATH := /sdcard/Pictures/Screenshots
+AERA_STATUS_ICONS_ALIGN := center
+AERA_TIME_ZONE_GUIDE := "IST-5:30"
+AERA_CUSTOM_CPU_POS := 50
+AERA_CUSTOM_CLOCK_POS := 300
+AERA_CUSTOM_BATTERY_POS := 800
+AERA_NO_SCREEN_BLANK := true
+AERA_INCLUDE_SCREENSHOT := true
+AERA_SCREENSHOT_PATH := /sdcard/Pictures/Screenshots
 
 # Debug & Logging
 TARGET_USES_LOGD := true
-TWRP_INCLUDE_LOGCAT := true
+AERA_INCLUDE_LOGCAT := true
 
 # Haptics & Modules
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-TW_USE_LEGACY_BATTERY_SERVICES := true
-TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_DEVICE_VERSION := @heppysingh
+AERA_SUPPORT_INPUT_AIDL_HAPTICS := true
+AERA_USE_LEGACY_BATTERY_SERVICES := true
+AERA_LOAD_VENDOR_BOOT_MODULES := true
+AERA_DEVICE_VERSION := @heppysingh
 
 # -----------------------------------------------------------------------------
-# OrangeFox Recovery Project Build Variables
+# AERA Recovery Project Build Variables
 # -----------------------------------------------------------------------------
 
 # Maintainer & Identity
 AERA_MAINTAINER := heppysingh
-TARGET_DEVICE_ALT := tornado
-AERA_TARGET_DEVICES := tornado
+TARGET_DEVICE_ALT := tornado,2508CRN2BI
+AERA_TARGET_DEVICES := tornado,2508CRN2BI
 
 # Target Architecture
 TARGET_ARCH := arm64
 
 # Virtual A/B & vendor_boot as recovery
+AERA_NO_REFLASH_CURRENT_RECOVERY := 1
+AERA_NO_SPLASH_CHANGE := 1
 
 # Size Optimization & Ramdisk Compression (LZ4 is required for MT6835 Little Kernel)
 AERA_USE_LZ4_COMPRESSION := 1
@@ -238,8 +240,9 @@ AERA_PATCH_AVB20 := 1
 AERA_VAB_ORS_WIPE_DATA_IS_FORMAT := 1
 AERA_DEFAULT_TIMEZONE := TAIST-5:30;IST
 AERA_FBE_METADATA_MOUNT_IGNORE := 1
+
 # Partition Tools & Backups
-OF_ENABLE_ALL_PARTITION_TOOLS := 1
-OF_QUICK_BACKUP_LIST := /boot;/data;/super;
+AERA_ENABLE_ALL_PARTITION_TOOLS := 1
+AERA_QUICK_BACKUP_LIST := /boot;/data;/super;
 
 AERA_INCLUDE_FASTBOOTD := true
