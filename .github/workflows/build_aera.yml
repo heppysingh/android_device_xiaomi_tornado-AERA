@@ -66,20 +66,39 @@ jobs:
           curl -L https://storage.googleapis.com/git-repo-downloads/repo -o ~/.local/bin/repo
           chmod +x ~/.local/bin/repo
           echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+
+      - name: Set up SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # Load private key and set strict permissions
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          # Pre-populate GitHub's host keys to prevent host verification prompts
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+          # Optional: Force SSH instead of HTTPS for GitHub repos
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
 
       - name: Sync AERA Sources
         run: |
           git config --global user.name "AERA Builder"
           git config --global user.email "builder@aera.recovery"
           git config --global color.ui true
-          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
-          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
           mkdir -p /home/runner/aera
           cd /home/runner/aera
-          repo init -u https://github.com/AERA-Recovery/android_manifest.git -b ${{ github.event.inputs.MANIFEST_BRANCH }} --git-lfs
-          repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
+          # Using SSH URL for the manifest repository
+          repo init -u git@github.com:AERA-Recovery/android_manifest.git -b ${{ github.event.inputs.MANIFEST_BRANCH }} --git-lfs
+          repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --
+          no-tags
       - name: Copy Device Tree
         run: |
           mkdir -p /home/runner/aera/device/xiaomi/tornado
