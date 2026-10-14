@@ -84,7 +84,7 @@ on boot
     chown system system /dev/xiaomi-touch
     chmod 0664 /dev/xiaomi-touch
     chown system system /sys/class/touch/tp_dev/fod_status
-   chmod 0664 /sys/class/touch/tp_dev/fod_status
+    chmod 0664 /sys/class/touch/tp_dev/fod_status
 
     # Load Touch modules via isolated service after core modules are stable
     start load-touch-modules
