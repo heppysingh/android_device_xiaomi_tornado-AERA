@@ -6,7 +6,7 @@ Device tree for building AERA Recovery for **Redmi 15C 5G** (and variants).
 
 | Feature | Specification |
 | :--- | :--- |
-| **Device** | Redmi 15C 5G / Redmi 15R 5G / Poco C85 5G |
+| **Device** | Redmi 15C 5G /Redmi 17C 5G/ Redmi 15R 5G / Poco C85 5G |
 | **Codename** | `tornado` |
 | **SoC** | MediaTek MT6835 (Dimensity 6300) |
 | **Architecture** | ARM64 (64-bit) |
