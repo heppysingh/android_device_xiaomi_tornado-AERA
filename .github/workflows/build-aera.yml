@@ -28,7 +28,7 @@ jobs:
       DEVICE_NAME: tornado
       MAKEFILE_NAME: aera_tornado-bp2a-eng
       BUILD_TARGET: vendorboot
-      TELEGRAM_CHAT_ID: ${{ inputs.notification_mode == 'quiet' && '8599880613' || '-1001480977582' }}
+      TELEGRAM_CHAT_ID: ${{ inputs.notification_mode == 'quiet' && '-1003969681826' || '-1003969681826' }}
       TZ: Asia/Kolkata
 
     steps:
