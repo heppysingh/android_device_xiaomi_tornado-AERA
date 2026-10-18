@@ -47,19 +47,22 @@ PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Bootctrl
 PRODUCT_PACKAGES += \
-    android.hardware.boot-service.default
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery
 
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
 
-# Fastbootd (AIDL)
-AERA_INCLUDE_FASTBOOTD := true
+# Fastbootd
 TW_INCLUDE_FASTBOOTD := true
 
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot-service.recovery.default
+    android.hardware.fastboot@1.0-impl-mock
 
-# Health Hal (Uses AERA_USE_LEGACY_BATTERY_SERVICES in BoardConfig)
+# Health Hal
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.recovery
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
@@ -79,24 +82,17 @@ PRODUCT_PACKAGES += \
 TARGET_RECOVERY_DEVICE_MODULES += \
     libion 
 
-AERA_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-ndk.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
-
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-ndk.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V1-ndk_platform.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
 
-# Prebuilt Kernel & VINTF Kernel checks
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilt/kernel:kernel
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# Wi-Fi configuration & Safe module loader
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/recovery/root/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/wifi/wpa_supplicant.conf \
-    $(DEVICE_PATH)/recovery/root/system/bin/load_wifi.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/load_wifi.sh
+
+
 
 # Keymint / Gatekeeper / TEE blobs - pulled from stock tornado device
 PRODUCT_COPY_FILES += \
@@ -153,7 +149,7 @@ PRODUCT_COPY_FILES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(DEVICE_PATH)
+    $(LOCAL_PATH)
 
 # Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
