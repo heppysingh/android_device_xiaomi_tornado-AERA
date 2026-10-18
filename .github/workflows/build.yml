@@ -67,7 +67,7 @@ jobs:
           chmod +x ~/.local/bin/repo
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Sync OrangeFox Sources
+      - name: Sync AERA Sources
         run: |
           git config --global user.name "AERA Builder"
           git config --global user.email "builder@aera.tech"
