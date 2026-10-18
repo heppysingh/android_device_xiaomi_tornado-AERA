@@ -18,7 +18,7 @@ $(call inherit-product-if-exists, vendor/orangefox/config/common.mk)
 # Device identifier
 BOARD_VENDOR := xiaomi
 PRODUCT_DEVICE := tornado
-PRODUCT_NAME := fox_tornado
+PRODUCT_NAME := aera_tornado
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi 15C 5G
 PRODUCT_MANUFACTURER := Xiaomi
