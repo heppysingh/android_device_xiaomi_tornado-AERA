@@ -1,26 +1,23 @@
-name: Build OrangeFox Recovery
+name: Build AERA Recovery
 
 on:
   workflow_dispatch:
     inputs:
       MANIFEST_BRANCH:
-        description: 'OrangeFox Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
+        description: 'AERA Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
         required: true
         default: '16.0'
         type: choice
         options:
-          - '12.1'
-          - '14.1'
-          - '11.0'
           - '16.0'
       BUILD_TARGET:
         description: 'Build Target'
         required: true
-        default: 'fox_tornado-bp2a-eng'
+        default: 'aera_tornado-bp2a-eng'
         type: choice
         options:
-          - 'fox_tornado-eng'
-          - 'fox_tornado-bp2a-eng'
+          - 'aera_tornado-eng'
+          - 'aera_tornado-bp2a-eng'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -72,16 +69,15 @@ jobs:
 
       - name: Sync OrangeFox Sources
         run: |
-          git config --global user.name "OrangeFox Builder"
-          git config --global user.email "builder@orangefox.tech"
+          git config --global user.name "AERA Builder"
+          git config --global user.email "builder@aera.tech"
           git config --global color.ui true
 
-          mkdir -p /tmp/sync_tools
-          cd /tmp/sync_tools
-          git clone https://gitlab.com/OrangeFox/sync.git
-          cd sync
-          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path /tmp/fox
-          
+          cd /tmp/
+          mkdir -p ~/android/fox
+          cd ~/android/fox
+          repo init -u https://github.com/AERA-Recovery/android_manifest.git -b aera-16.0
+          repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc)
           
       - name: Copy Device Tree
         run: |
@@ -91,7 +87,7 @@ jobs:
             --exclude=.github \
             ./ /tmp/fox/device/xiaomi/tornado/
 
-      - name: Build OrangeFox Recovery
+      - name: Build AERA Recovery
         run: |
           cd /tmp/fox
           set +e
@@ -120,10 +116,5 @@ jobs:
           name: OrangeFox-tornado
           if-no-files-found: warn
           path: |
-            /tmp/fox/out/target/product/tornado/OrangeFox*.zip
-            /tmp/fox/out/target/product/tornado/OrangeFox*.img
-            /tmp/fox/out/target/product/tornado/vendor_boot.img
-            /tmp/fox/out/target/product/tornado/vendorboot.img
-            /tmp/fox/out/target/product/tornado/vendor_ramdisk_recovery.cpio
-            /tmp/fox/out/target/product/tornado/recovery.img
-            /tmp/fox/out/target/product/tornado/boot.img
+            /tmp/fox/out/target/product/tornado/*.zip
+            /tmp/fox/out/target/product/tornado/*.img
