@@ -6,6 +6,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := $(LOCAL_DIR)/fox_tornado.mk
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/aera_tornado.mk
 
-COMMON_LUNCH_CHOICES := fox_tornado-eng 
+COMMON_LUNCH_CHOICES := aera_tornado-eng 
