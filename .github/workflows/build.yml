@@ -74,8 +74,8 @@ jobs:
           git config --global color.ui true
 
           cd /tmp/
-          mkdir -p ~/android/fox
-          cd ~/android/fox
+          mkdir -p android/fox
+          cd android/fox
           repo init -u https://github.com/AERA-Recovery/android_manifest.git -b aera-16.0
           repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc)
           
