@@ -1,5 +1,4 @@
 # Soft dependencies extracted from modules themselves.
-softdep mali_kbase_mt6835 pre: memory_group_manager
 softdep xm_smart_chg lc charger
 softdep mt6835_dcm pre:mtk_dcm.ko
 softdep mtk_sec_heap pre: apusys
