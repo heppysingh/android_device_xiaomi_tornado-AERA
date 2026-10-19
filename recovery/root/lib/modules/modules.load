@@ -17,7 +17,6 @@ pinctrl-mt6835.ko
 pinctrl-mtk-common-v2_debug.ko
 device-apc-common.ko
 device-apc-mt6835.ko
-dynamic_readahead.ko
 zsmalloc.ko
 zram.ko
 clk-common.ko
@@ -157,7 +156,6 @@ mt6377-battery.ko
 acl16_slg2.ko
 ds28e30.ko
 stick-a101.ko
-jakob_cw0830.ko
 pwm-mtk-disp.ko
 leds-mtk.ko
 leds-mtk-disp.ko
