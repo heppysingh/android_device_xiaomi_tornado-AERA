@@ -88,7 +88,6 @@ on boot
 
     # Load Touch modules via isolated service after core modules are stable
     start load-touch-modules
-    start load-wifi-modules
     start health-hal-2-1
     start vendor.vibrator-default
     setprop sys.usb.config adb
