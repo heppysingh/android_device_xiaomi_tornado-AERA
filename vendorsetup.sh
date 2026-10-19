@@ -55,7 +55,6 @@ if [ "$1" = "$FDEVICE" ] || [ "$AERA_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export AERA_COMPRESS_EXECUTABLES=1
 
 	# Shell and standard binaries
-	export AERA_USE_BUSYBOX_BINARY=1
 	export AERA_DELETE_AROMAFM=1
 	export AERA_DELETE_MAGISK_ADDON=1
 	export AERA_USE_UPDATED_MAGISKBOOT=1
