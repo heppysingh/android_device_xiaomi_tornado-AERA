@@ -38,30 +38,30 @@ jobs:
           echo "workspace-folder=/mnt/workspace" >> "$GITHUB_OUTPUT"
           df -h
 
-      # ---------------------------------------------------------
-      # SWAP
-      # ---------------------------------------------------------
+        # ---------------------------------------------------------
+        # SWAP
+        # ---------------------------------------------------------
 
 
 
 
 
 
-    - name: Set Swap Space
-      uses: pierotofy/set-swap-space@master
-      with:
-        swap-size-gb: 30
-
-    - name: Show system resources
-      run: |
-        echo "CPU cores:"
-        nproc
-        echo
-        echo "Memory:"
-        free -h
-        echo
-        echo "Disk:"
-        df -h
+     - name: Set Swap Space
+       uses: pierotofy/set-swap-space@master
+       with:
+         swap-size-gb: 30
+ 
+     - name: Show system resources
+       run: |
+         echo "CPU cores:"
+         nproc
+         echo
+         echo "Memory:"
+         free -h
+         echo
+         echo "Disk:"
+         df -h
 
       # ---------------------------------------------------------
       # JAVA
