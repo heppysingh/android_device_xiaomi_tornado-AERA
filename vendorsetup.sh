@@ -41,7 +41,6 @@ if [ "$1" = "$FDEVICE" ] || [ "$AERA_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export AERA_DYNAMIC_FULL_SIZE=9126805504
 	export AERA_NO_REFLASH_CURRENT_RECOVERY=1
 	export AERA_NO_SPLASH_CHANGE=1
-        export AERA_ENABLE_WLAN=1
 	# Build info & Vanilla build
 	export AERA_VANILLA_BUILD=1
 	export AERA_PRODUCT_PREFIX=AERA
