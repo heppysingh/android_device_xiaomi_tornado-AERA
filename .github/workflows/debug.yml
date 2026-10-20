@@ -24,6 +24,14 @@ jobs:
 
       - name: Cleanup
         uses: rokibhasansagar/slimhub_actions@main
+ 
+
+
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 30
+
       # ---------------------------------------------------------
       # WORKSPACE
       # ---------------------------------------------------------
@@ -38,30 +46,9 @@ jobs:
           echo "workspace-folder=/mnt/workspace" >> "$GITHUB_OUTPUT"
           df -h
 
-        # ---------------------------------------------------------
-        # SWAP
-        # ---------------------------------------------------------
-
-
-
-
-
-
-     - name: Set Swap Space
-       uses: pierotofy/set-swap-space@master
-       with:
-         swap-size-gb: 30
- 
-     - name: Show system resources
-       run: |
-         echo "CPU cores:"
-         nproc
-         echo
-         echo "Memory:"
-         free -h
-         echo
-         echo "Disk:"
-         df -h
+      # ---------------------------------------------------------
+      # SWAP
+      # ---------------------------------------------------------
 
       # ---------------------------------------------------------
       # JAVA
@@ -106,6 +93,16 @@ jobs:
         with:
           limit-access-to-actor: true
  
+      - name: Show system resources post-build
+        run: |
+          echo "CPU cores:"
+          nproc
+          echo
+          echo "Memory:"
+          free -h
+          echo
+          echo "Disk:"
+          df -h
 
       - name: Upload Artifacts
         if: always()
