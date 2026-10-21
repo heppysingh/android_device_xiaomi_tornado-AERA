@@ -23,7 +23,7 @@ jobs:
       SYNC_URL: https://github.com/AERA-Recovery/android_manifest.git
       MANIFEST_BRANCH: "aera-16.0"
       DEVICE_TREE_URL: https://github.com/heppysingh/android_device_xiaomi_tornado-AERA
-      DEVICE_TREE_BRANCH: "alt"
+      DEVICE_TREE_BRANCH: "aera-16.0"
       DEVICE_PATH: device/xiaomi/tornado
       DEVICE_NAME: tornado
       MAKEFILE_NAME: aera_tornado-bp2a-eng
