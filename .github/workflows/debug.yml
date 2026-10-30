@@ -101,5 +101,5 @@ jobs:
           name: fox_16
           if-no-files-found: warn
           path: |
-            /crave/android/out/target/product/tornado/*.zip
-            /crave/android/out/target/product/tornado/*.img 
+            ~/android/out/target/product/tornado/*.zip
+            ~/android/out/target/product/tornado/*.img 
