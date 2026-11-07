@@ -1,23 +1,26 @@
-name: Build AERA Recovery
+name: Build OrangeFox Recovery
 
 on:
   workflow_dispatch:
     inputs:
       MANIFEST_BRANCH:
-        description: 'AERA Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
+        description: 'OrangeFox Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
         required: true
         default: '16.0'
         type: choice
         options:
+          - '12.1'
+          - '14.1'
+          - '11.0'
           - '16.0'
       BUILD_TARGET:
         description: 'Build Target'
         required: true
-        default: 'aera_tornado-bp2a-eng'
+        default: 'fox_tornado-bp2a-eng'
         type: choice
         options:
-          - 'aera_tornado-eng'
-          - 'aera_tornado-bp2a-eng'
+          - 'fox_tornado-eng'
+          - 'fox_tornado-bp2a-eng'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,14 +43,12 @@ jobs:
       - name: Cleanup
         uses: rokibhasansagar/slimhub_actions@main
 
-      - name: Create 16GB swap
-        run: |
-          sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=16384
-          sudo chmod 600 /mnt/swapfile
-          sudo mkswap /mnt/swapfile
-          sudo swapon /mnt/swapfile
-          free -h
-          
+
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 30
+
 
       - name: Install Dependencies
         run: |
@@ -67,29 +68,32 @@ jobs:
           chmod +x ~/.local/bin/repo
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Sync AERA Sources
+      - name: Sync OrangeFox Sources
         run: |
-          git config --global user.name "AERA Builder"
-          git config --global user.email "builder@aera.tech"
+          git config --global user.name "OrangeFox Builder"
+          git config --global user.email "builder@orangefox.tech"
           git config --global color.ui true
 
-          cd /tmp/
-          mkdir -p fox
-          cd fox
-          repo init -u https://github.com/AERA-Recovery/android_manifest.git -b aera-16.0
-          repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc)
-          
+          mkdir -p ~/sync_tools
+          cd ~/sync_tools
+          git clone https://gitlab.com/OrangeFox/sync.git
+          cd sync
+          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path ~/fox
+          cd ~/fox/bootable/recovery 
+          git fetch https://gitlab.com/OrangeFox/bootable/recovery.git fox_16.0_wifidev
+          git checkout -B fox_16.0_wifidev FETCH_HEAD
+
       - name: Copy Device Tree
         run: |
-          mkdir -p /tmp/fox/device/xiaomi/tornado
+          mkdir -p ~/fox/device/xiaomi/tornado
           rsync -a \
             --exclude=.git \
             --exclude=.github \
-            ./ /tmp/fox/device/xiaomi/tornado/
+            ./ ~/fox/device/xiaomi/tornado/
 
-      - name: Build AERA Recovery
+      - name: Build OrangeFox Recovery
         run: |
-          cd /tmp/fox
+          cd ~/fox
           set +e
           source build/envsetup.sh
           set -e
@@ -101,13 +105,13 @@ jobs:
       - name: Show Build Output
         if: always()
         run: |
-          find /tmp/fox/out/target/product/tornado -maxdepth 2 -type f || true
+          find ~/fox/out/target/product/tornado -maxdepth 2 -type f || true
 
       - name: Fix Permissions
         if: always()
         run: |
-          sudo chown -R runner:runner /tmp/fox/out || true
-          sudo chmod -R a+rX /tmp/fox/out || true
+          sudo chown -R runner:runner ~/fox/out || true
+          sudo chmod -R a+rX ~/fox/out || true
 
       - name: Upload Artifacts
         if: always()
@@ -116,5 +120,10 @@ jobs:
           name: OrangeFox-tornado
           if-no-files-found: warn
           path: |
-            /tmp/fox/out/target/product/tornado/*.zip
-            /tmp/fox/out/target/product/tornado/*.img
+            ~/fox/out/target/product/tornado/OrangeFox*.zip
+            ~/fox/out/target/product/tornado/OrangeFox*.img
+            ~/fox/out/target/product/tornado/vendor_boot.img
+            ~/fox/out/target/product/tornado/vendorboot.img
+            ~/fox/out/target/product/tornado/vendor_ramdisk_recovery.cpio
+            ~/fox/out/target/product/tornado/recovery.img
+            ~/fox/out/target/product/tornado/boot.img
