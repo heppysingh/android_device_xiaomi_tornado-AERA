@@ -255,3 +255,4 @@ AERA_QUICK_BACKUP_LIST := /boot;/data;/super;
 AERA_INCLUDE_FASTBOOTD := true
 AERA_ENABLE_WLAN := 1
 TW_LOAD_VENDOR_MODULES := "connadp.ko connfem.ko btif_drv.ko wmt_drv.ko wmt_chrdev_wifi.ko mddp.ko wlan_drv_gen4m_6835.ko"
+AERA_USE_EXTREME_COMPRESSION := 1
