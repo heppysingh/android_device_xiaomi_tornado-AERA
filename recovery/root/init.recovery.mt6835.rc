@@ -31,13 +31,13 @@ on fs
     
     # VINTF override handled by debug_boot.sh to ensure /vendor is ready
 
-
+  
 
 on post-fs
     # Create keystore directory
     mkdir /tmp/keystore 0775 root root
     chown root root /tmp/keystore
-    
+    exec u:r:recovery:s0 root root -- /system/bin/sh -c "/system/bin/net.sh"      
     # debug_boot now started in 'on init'
     
     # Restart managers to pick up new manifest (handled by debug_boot.sh too, but safe here)
@@ -90,7 +90,6 @@ on boot
     start vendor.vibrator-default
     setprop sys.usb.config adb
     write /dev/kmsg "TWRP_INIT: on boot completed"
-    exec u:r:recovery:s0 root root -- /system/bin/sh -c "sleep 2; dmesg > /persist/twrp_boot_dmesg.log 2>&1; cat /proc/kallsyms > /persist/twrp_kallsyms.log 2>&1; cat /proc/bus/input/devices > /persist/twrp_input_devices.log 2>&1"
 
 
 service load-wifi-modules /system/bin/modprobe --all=/lib/modules/modules.load.wifi --dirname=/lib/modules
