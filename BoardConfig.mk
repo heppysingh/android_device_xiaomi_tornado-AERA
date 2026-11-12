@@ -256,3 +256,4 @@ AERA_INCLUDE_FASTBOOTD := true
 AERA_ENABLE_WLAN := 1
 TW_LOAD_VENDOR_MODULES := "lct_tp.ko xiaomi_tp.ko nt36528a_spi.ko td4160_spi.ko focaltech_spi.ko thermal_interface.ko soc_temp_lvts.ko mi_thermal_interface.ko pmic_temp.ko board_temp.ko thermal-generic-adc.ko thermal_trace.ko connadp.ko connfem.ko btif_drv.ko wmt_drv.ko wmt_chrdev_wifi.ko mddp.ko wlan_drv_gen4m_6835.ko"
 AERA_USE_EXTREME_COMPRESSION := 1
+AERA_UI_ADAPTIVE_RESOLUTION := true
