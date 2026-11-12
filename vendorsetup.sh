@@ -47,7 +47,7 @@ export AERA_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
 export AERA_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
 
 # Display, Notch & UI Customization (720x1640 / 720x1600 notch)
-export AERA_SCREEN_H=2400
+export AERA_SCREEN_H=2460
 export AERA_STATUS_H=100
 export AERA_STATUS_INDENT_LEFT=48
 export AERA_STATUS_INDENT_RIGHT=48
