@@ -47,7 +47,7 @@ service wmt_launcher /vendor/bin/wmt_launcher -p /vendor/firmware/ -o 1
     disabled
     seclabel u:r:recovery:s0
 
-on property:sys.fox.wlan.up=1
+on property:sys.aera.wlan.up=1
     mkdir /tmp/recovery 0775 root wifi
     chown root wifi /tmp/recovery
     chmod 0775 /tmp/recovery
